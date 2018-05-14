@@ -3,7 +3,7 @@ import { environment } from '../../environments/environment';
 
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, catchError } from 'rxjs/operators';
 
 const API_URL = environment.apiUrl;
 
@@ -13,12 +13,20 @@ export class ApiService {
 
   constructor(private http: HttpClient) { }
 
-  public invokeService(url, section, data, callback) {
-    return this.http.get(API_URL + section)
-      .subscribe(response => {
-        const result = response;
+  public invokeService(method, section, data, callback) {
+    if (method === 'GET') {
+      return this.http.get(API_URL + section)
+      .pipe(
+        catchError(this.handleError)
+      );
+    }
+    if (method === 'POST') {
+      return this.http.post(API_URL + section, data)
+      .pipe(
+        catchError(this.handleError)
+      );
+    }
 
-      });
   }
 
   private handleError (error: HttpErrorResponse) {
