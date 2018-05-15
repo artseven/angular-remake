@@ -8,17 +8,12 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./test.component.css']
 })
 export class TestComponent implements OnInit {
-  result: {};
 
   constructor(private apiServ: ApiService) { }
 
   ngOnInit() {
 
-    this.apiServ.invokeService('GET', 'profile/undefined/me.json', null, null)
-    .subscribe(response => {
-      this.result = response;
-      console.log(this.result);
-    });
+
 
   }
 

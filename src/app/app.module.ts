@@ -7,12 +7,16 @@ import { HttpClientModule } from '@angular/common/http';
 import { TestComponent } from './test/test.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ProfileComponent } from './profile/profile.component';
+import { SearchComponent } from './search/search.component';
+import { GalleryComponent } from './gallery/gallery.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TestComponent,
-    ProfileComponent
+    ProfileComponent,
+    SearchComponent,
+    GalleryComponent
   ],
   imports: [
     BrowserModule,
